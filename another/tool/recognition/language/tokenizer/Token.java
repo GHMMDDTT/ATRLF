@@ -1,19 +1,21 @@
 package another.tool.recognition.language.tokenizer;
 
+import another.tool.recognition.language.Results.Result;
+
 import java.util.Arrays;
 
 public class Token {
-	private final String value;
+	private final Result<?> value;
 	private final Enum<?>[] type;
 	private final int line;
 
-	public Token(String value, Enum<?>[] type, int line) {
+	public Token(Result<?> value, Enum<?>[] type, int line) {
 		this.value = value;
 		this.type = type;
 		this.line = line;
 	}
 
-	public String getValue() {
+	public Result<?> getValue() {
 		return this.value;
 	}
 

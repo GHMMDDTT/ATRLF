@@ -1,41 +1,49 @@
 package another.tool.recognition.language.tokenizer;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.CharBuffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class LanguageTokenizerInformation {
-	private int cursor = 0;
+	private int position;
 	private int line = 1;
 	private int column;
 
 	private final char[] target;
 
-	private final ArrayList<Token> tokens = new ArrayList<>(32);
-
 	public LanguageTokenizerInformation(char[] target) { this.target = target; }
 
 	public LanguageTokenizerInformation(String target) { this.target = target.toCharArray(); }
 
-	public int getCursor() {
-		return cursor;
+	public LanguageTokenizerInformation(File file) { this.target = readFile(file); }
+
+	public int getPosition() {
+		return position;
 	}
 
-	public void setCursor(int cursor) {
-		this.cursor = cursor;
+	public void setPosition(int position) {
+		this.position = position;
 	}
 
-	public void advanceCursor() {
-		this.cursor++;
+	public void setNextPosition() {
+		this.position++;
 	}
 
-	public void backCursor() {
-		this.cursor++;
+	public void setPreviousPosition() {
+		this.position++;
 	}
 
 	public int getLine() {
 		return line;
 	}
 
-	public void advanceLine() {
+	public void setNextLine() {
 		this.line++;
 	}
 
@@ -49,11 +57,19 @@ public class LanguageTokenizerInformation {
 		return target;
 	}
 
-	public ArrayList<Token> getTokens() {
-		return tokens;
-	}
+	private char[] readFile(File file) {
+		try (FileInputStream fis = new FileInputStream(file)) {
+			FileChannel channel = fis.getChannel();
+			MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size());
 
-	public void addToken(Token t) {
-		this.tokens.add(t);
+			Charset charset = StandardCharsets.UTF_8;
+			CharBuffer charBuffer = charset.decode(buffer);
+
+			char[] result = new char[charBuffer.remaining()];
+			charBuffer.get(result);
+			return result;
+		} catch (IOException e) {
+			return new char[0];
+		}
 	}
 }
