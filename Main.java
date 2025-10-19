@@ -215,7 +215,7 @@ void main() {
 	});
 	ArrayList<Token> tokens = language.onTokenizer();
 	long end = System.nanoTime();
-	System.out.println("Time of Execute this is in: " + ((end - start) / 1_000_000) + "ms"); // Time of Execute this is in: 29ms
+	System.out.println("Time of Execute this is in: " + ((end - start) / 1_000_000) + "ms"); // Time of Execute this is in: 722ms
 	//System.out.println("Tokens: " + tokens); // Tokens: [Token{value='[i, Token{value='[m, p, o, r, t]', type=[IdentifierToken], line=1}]', type=[ImportKeywordToken], line=1}]
 }
 
