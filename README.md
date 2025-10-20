@@ -14,10 +14,22 @@ ATRLF can help you create DSLs or scripts (even programming languages) quickly a
 
 And not only that, it can also help you understand how compiler structures are made.
 
+That the same project offers a Tokenizer (Scanner) and a Parser to create Nodes.
+
 ## How to use it?
 
-First clone the project using the following git commands:
+### Download and link to my project.
 
-```git
-git clone https
+[Missing]
+
+### How to use the project
+
+To use it, you first have to use the `LanguageTokenizer` since that will give us some **Tokens** already built.
+
+(Example of using it)
+```Java
+public void MyTokenizerForMyLanguageProgrammin() {
+
+}
 ```
+
