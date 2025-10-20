@@ -28,7 +28,17 @@ To use it, you first have to use the `LanguageTokenizer` since that will give us
 
 (Example of using it)
 ```Java
+// MyMain.java
+import another.tools.recognition.language.format.tokenizer.LanguageTokenizer;
+
 public void MyTokenizerForMyLanguageProgrammin() {
+    LanguageTokenizer myTokenizer = new LanguageTokenizer(new MyTokenizerMain(?);
+}
+
+// MyTokenizerMain.java
+import another.tools.recognition.language.format.tokenizer.RuleLanguageTokenizer;
+
+public class myTokenizerMain extends RuleLanguageTokenizer {
 
 }
 ```
