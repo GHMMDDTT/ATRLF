@@ -26,6 +26,8 @@ That the same project offers a Tokenizer (Scanner) and a Parser to create Nodes.
 
 To use it, you first have to use the `LanguageTokenizer` since that will give us some **Tokens** already built.
 
+[Missing]
+
 (Example of using it)
 ```Java
 // MyMain.java
@@ -34,7 +36,11 @@ import another.tools.recognition.language.format.tokenizer.LanguageTokenizer;
 public void MyTokenizerForMyLanguageProgrammin() {
     LanguageTokenizer myTokenizer = new LanguageTokenizer(new MyTokenizerMain(?);
 }
+```
 
+[Missing]
+
+```Java
 // MyTokenizerMain.java
 import another.tools.recognition.language.format.tokenizer.RuleLanguageTokenizer;
 
@@ -42,4 +48,6 @@ public class myTokenizerMain extends RuleLanguageTokenizer {
 
 }
 ```
+
+[Missing]
 
