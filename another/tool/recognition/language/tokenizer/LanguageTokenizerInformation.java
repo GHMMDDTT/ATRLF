@@ -11,17 +11,19 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class LanguageTokenizerInformation {
-	private int position;
+	private int position = 0;
 	private int line = 1;
 	private int column;
 
 	private final char[] target;
 
+	private final ArrayList<Token> tokens = new ArrayList<>(32);
+
 	public LanguageTokenizerInformation(char[] target) { this.target = target; }
 
 	public LanguageTokenizerInformation(String target) { this.target = target.toCharArray(); }
 
-	public LanguageTokenizerInformation(File file) { this.target = readFile(file); }
+	public LanguageTokenizerInformation(File target) { this.target = readFile(target); }
 
 	public int getPosition() {
 		return position;
@@ -35,7 +37,7 @@ public class LanguageTokenizerInformation {
 		this.position++;
 	}
 
-	public void setPreviousPosition() {
+	public void setBackPosition() {
 		this.position++;
 	}
 
@@ -55,6 +57,14 @@ public class LanguageTokenizerInformation {
 
 	public char[] getTarget() {
 		return target;
+	}
+
+	public ArrayList<Token> getTokens() {
+		return tokens;
+	}
+
+	public void addToken(Token t) {
+		this.tokens.add(t);
 	}
 
 	private char[] readFile(File file) {

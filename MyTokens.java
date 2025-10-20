@@ -1,8 +1,9 @@
+import another.tool.recognition.language.Results.Result;
 import another.tool.recognition.language.Results.State;
-import another.tool.recognition.language.interpreter.LanguageInterpreterInformation;
-import another.tool.recognition.language.syntaxes.Syntax;
+import another.tool.recognition.language.parser.LanguageParserInformation;
+import another.tool.recognition.language.grammaticals.Grammatical;
 
-public enum MyTokens implements Syntax {
+public enum MyTokens implements Grammatical {
 	// Classical:
 	IdentifierToken,
 
@@ -72,13 +73,13 @@ public enum MyTokens implements Syntax {
 	NullKeywordLiteralToken, InterpolationLiteralToken;
 
 	@Override
-	public State onSyntaxExecute(LanguageInterpreterInformation information) {
-		for (Enum<?> type : information.getTarget().get(information.getCursor()).getType()) {
+	public Result onGrammaticalExecute(LanguageParserInformation information) {
+		for (Enum<?> type : information.getTarget().get(information.getPosition()).getType()) {
 			if (type == this) {
-				information.advanceCursor();
-				return State.SUCCESS;
+				information.setNextPosition();
+				return new Result(null);
 			}
 		}
-		return State.FAILED;
+		return null;
 	}
 }

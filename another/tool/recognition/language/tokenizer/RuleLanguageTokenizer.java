@@ -3,36 +3,33 @@ package another.tool.recognition.language.tokenizer;
 import another.tool.recognition.language.rules.*;
 
 public abstract class RuleLanguageTokenizer {
-	public AllRules All() { return new AllRules(); }
-	public EmptyRules Empty() { return new EmptyRules(); }
+	public final AllRule All() { return new AllRule(); }
+	public final EmptyRule Empty() { return new EmptyRule(); }
 
-	public CharacterRules Character(char target) { return new CharacterRules(target); }
-	public CharacterRangeRules CharacterRange(char minimum, char maximum) { return new CharacterRangeRules(minimum, maximum); }
-	public AnyOfRules AnyOf(char... targets) { return new AnyOfRules(targets); }
-	public NoneOfRules NoneOf(char... targets) { return new NoneOfRules(targets); }
+	public final CharacterRule Character(char target) { return new CharacterRule(target); }
+	public final CharacterRangeRule CharacterRange(char minimum, char maximum) { return new CharacterRangeRule(minimum, maximum); }
+	public final AnyOfRule AnyOf(char... targets) { return new AnyOfRule(targets); }
+	public final NoneOfRule NoneOf(char... targets) { return new NoneOfRule(targets); }
 
-	public NotRules Not(Rules rules) { return new NotRules(rules); }
-	public OptionalRules Optional(Rules rules) { return new OptionalRules(rules); }
-	public RepeatRules Repeat(Rules rules, int repeat) { return new RepeatRules(rules, repeat); }
-	public RangeRules Range(Rules rules, int minimum, int maximum) { return new RangeRules(rules, minimum, maximum); }
+	public final NotRule Not(Rule rules) { return new NotRule(rules); }
+	public final OptionalRule Optional(Rule rules) { return new OptionalRule(rules); }
+	public final RepeatRule Repeat(Rule rules, int repeat) { return new RepeatRule(rules, repeat); }
+	public final RangeRule Range(Rule rules, int minimum, int maximum) { return new RangeRule(rules, minimum, maximum); }
 
-	public OneOrMoreRules OneOrMore(Rules rules) { return new OneOrMoreRules(rules); }
-	public OptionalOrMoreRules OptionalOrMore(Rules rules) { return new OptionalOrMoreRules(rules); }
-	public MoreRules More(Rules rules) { return new MoreRules(rules); }
-	public MoreOfRules MoreOf(Rules rules, int minimum) { return new MoreOfRules(rules, minimum); }
-	public LessOfRules LessOf(Rules rules, int maximum) { return new LessOfRules(rules, maximum); }
+	public final OneOrMoreRule OneOrMore(Rule rules) { return new OneOrMoreRule(rules); }
+	public final OptionalOrMoreRule OptionalOrMore(Rule rules) { return new OptionalOrMoreRule(rules); }
+	public final MoreRule More(Rule rules) { return new MoreRule(rules); }
+	public final MoreOfRule MoreOf(Rule rules, int minimum) { return new MoreOfRule(rules, minimum); }
+	public final LessOfRule LessOf(Rule rules, int maximum) { return new LessOfRule(rules, maximum); }
 
-	public GroupRules Group(Rules rules) { return new GroupRules(rules); }
-	public SkipRules Skip(Rules rules) { return new SkipRules(rules); }
+	public final RulRule Rul(Rule rules, RulRule.OnRulRuleListener listener) { return new RulRule(rules, listener); }
 
-	public RulRules Rul(Rules rules, RulRules.OnRulRulesListener listener) { return new RulRules(rules, listener); }
+	public final SequenceRule Sequence(Rule... rules) { return new SequenceRule(rules); }
+	public final FirstOfRule FirstOf(Rule... rules) { return new FirstOfRule(rules); }
 
-	public SequenceRules Sequence(Rules... rules) { return new SequenceRules(rules); }
-	public FirstOfRules FirstOf(Rules... rules) { return new FirstOfRules(rules); }
+	public final TokenRule Token(Rule rules, Enum<?> type) { return new TokenRule(rules, type); }
+	public final TokenRule Token(Rule rules, TokenRule.OnActionTokenSyntaxListener type) { return new TokenRule(rules, type); }
 
-	public TokenRules Token(Rules rules, Enum<?> type) { return new TokenRules(rules, type); }
-	public TokenRules Token(Rules rules, TokenRules.OnActionTokenSyntaxListener type) { return new TokenRules(rules, type); }
-
-	public abstract Rules onRegex();
-	public abstract Rules onRegexSkipped();
+	public abstract Rule onRegex();
+	public abstract Rule onRegexSkipped();
 }

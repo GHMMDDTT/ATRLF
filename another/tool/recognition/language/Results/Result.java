@@ -1,28 +1,13 @@
 package another.tool.recognition.language.Results;
 
-public class Result<T> {
-	private final T value;
-	private final boolean success;
+import another.tool.recognition.language.trees.Node;
 
-	public Result(T value, boolean success) {
-		this.value = value;
-		this.success = success;
-	}
+import java.util.ArrayList;
 
-	public T getValue() {
-		return value;
-	}
+public class Result {
+	public final Object node;
 
-	public boolean isSuccess() {
-		return this.success;
-	}
-
-	public boolean isFailed() {
-		return !this.success;
-	}
-
-	@Override
-	public String toString() {
-		return String.valueOf(value);
+	public Result(Object node) {
+		this.node = node;
 	}
 }
